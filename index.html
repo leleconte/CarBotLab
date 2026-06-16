@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BOTLAB - Discord Bot Shop</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #070b16;
+      color: white;
+    }
+
+    header {
+      padding: 18px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #0b1020;
+      border-bottom: 1px solid #5865f2;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo img {
+      height: 65px;
+      display: block;
+    }
+
+    nav a {
+      color: white;
+      margin-left: 25px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #00d4ff;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 110px 20px;
+      background:
+        radial-gradient(circle at top left, rgba(0, 212, 255, 0.25), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(139, 92, 246, 0.35), transparent 35%),
+        linear-gradient(135deg, #070b16, #101a3a, #3b1d73);
+    }
+
+    .hero-logo {
+      width: 170px;
+      margin-bottom: 25px;
+      filter: drop-shadow(0 0 25px rgba(88, 101, 242, 0.7));
+    }
+
+    .hero h1 {
+      font-size: 58px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: #cfd3ff;
+      max-width: 750px;
+      margin: auto;
+      line-height: 1.6;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 15px 30px;
+      background: linear-gradient(135deg, #5865f2, #8b5cf6);
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: bold;
+      box-shadow: 0 0 25px rgba(88, 101, 242, 0.5);
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+    }
+
+    section {
+      padding: 70px 60px;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 38px;
+      margin-bottom: 15px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #cfd3ff;
+      margin-bottom: 45px;
+      font-size: 18px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: #0f172f;
+      border-radius: 22px;
+      border: 1px solid #5865f2;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(88, 101, 242, 0.25);
+      overflow: hidden;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 45px rgba(88, 101, 242, 0.55);
+    }
+
+    .card img {
+      width: 100%;
+      display: block;
+    }
+
+    .card-content {
+      padding: 25px;
+    }
+
+    .card h3 {
+      color: #8b5cf6;
+      margin-bottom: 10px;
+      font-size: 23px;
+    }
+
+    .card p {
+      color: #cfd3ff;
+      line-height: 1.5;
+    }
+
+    .price {
+      font-size: 28px;
+      font-weight: bold;
+      color: #00d4ff;
+      margin-top: 18px;
+    }
+
+    .about {
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+      color: #cfd3ff;
+      font-size: 19px;
+      line-height: 1.7;
+    }
+
+    .features {
+      margin-top: 50px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+    }
+
+    .feature {
+      background: #0f172f;
+      border: 1px solid #5865f2;
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(88, 101, 242, 0.2);
+    }
+
+    .feature-icon {
+      font-size: 38px;
+      margin-bottom: 15px;
+    }
+
+    .feature h3 {
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    .feature p {
+      color: #cfd3ff;
+    }
+
+    .cta {
+      text-align: center;
+      background:
+        radial-gradient(circle at center, rgba(88, 101, 242, 0.25), transparent 40%),
+        #0b1020;
+      border-top: 1px solid #5865f2;
+      border-bottom: 1px solid #5865f2;
+    }
+
+    .cta p {
+      color: #cfd3ff;
+      font-size: 19px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: #0b1020;
+      color: #aaa;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 18px 25px;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      nav a {
+        margin: 0 10px;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      section {
+        padding: 60px 25px;
+      }
+
+      .products {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="BOTLAB Logo">
+    </div>
+
+    <nav>
+      <a href="#products">Products</a>
+      <a href="#about">About</a>
+      <a href="https://discord.gg/TN36R4YefY" target="_blank">Discord</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <img class="hero-logo" src="logo.png" alt="BOTLAB Logo">
+
+    <h1>Premium Discord Bots</h1>
+
+    <p>
+      BOTLAB is a Discord bot shop that provides modern, affordable and fully customizable bots for every type of server.
+      Improve your community with professional systems, clean designs and fast support.
+    </p>
+
+    <a class="btn" href="https://discord.gg/TN36R4YefY" target="_blank">Join Our Discord</a>
+  </div>
+
+  <section id="products">
+    <h2>Our Premium Bots</h2>
+    <p class="section-subtitle">Professional Discord solutions for every community.</p>
+
+    <div class="products">
+
+      <div class="card">
+        <img src="welcome.png" alt="Welcome Bot">
+        <div class="card-content">
+          <h3>Welcome Bot</h3>
+          <p>Send automatic welcome messages to every new member.</p>
+          <div class="price">€2.99</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="verification.png" alt="Verification System">
+        <div class="card-content">
+          <h3>Verification System</h3>
+          <p>Protect your server with a clean and secure verification system.</p>
+          <div class="price">€2.99</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="moderation.png" alt="Moderation Bot">
+        <div class="card-content">
+          <h3>Moderation Bot</h3>
+          <p>Manage warnings, mutes, kicks, bans and server moderation.</p>
+          <div class="price">€4.99</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="logging.png" alt="Logging System">
+        <div class="card-content">
+          <h3>Logging System</h3>
+          <p>Track messages, joins, leaves, bans and every server action.</p>
+          <div class="price">€2.99</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="giveaway.png" alt="Giveaway Bot">
+        <div class="card-content">
+          <h3>Giveaway Bot</h3>
+          <p>Create and manage professional giveaways easily.</p>
+          <div class="price">€2.99</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="shop_economy.png" alt="Shop Economy Bot">
+        <div class="card-content">
+          <h3>Shop / Economy Bot</h3>
+          <p>Add coins, shops, balance, inventory and economy features.</p>
+          <div class="price">€7.99</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="levelling.png" alt="Levelling System">
+        <div class="card-content">
+          <h3>Levelling System</h3>
+          <p>Reward active users with XP, levels, ranks and leaderboards.</p>
+          <div class="price">€4.99</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="anti_raid.png" alt="Anti Raid Anti Spam">
+        <div class="card-content">
+          <h3>Anti Raid / Anti Spam</h3>
+          <p>Protect your server from raids, spam, unwanted links and attacks.</p>
+          <div class="price">€4.99</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="ai_bot.png" alt="AI Bot">
+        <div class="card-content">
+          <h3>AI Bot</h3>
+          <p>Add an intelligent AI assistant directly to your Discord server.</p>
+          <div class="price">€9.99</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="ticket_system.png" alt="Ticket System">
+        <div class="card-content">
+          <h3>Ticket System</h3>
+          <p>Create support tickets for customers, members and staff requests.</p>
+          <div class="price">€4.99</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="custom_bot.png" alt="Custom Bot">
+        <div class="card-content">
+          <h3>Custom Bot</h3>
+          <p>A fully custom Discord bot made specifically for your server.</p>
+          <div class="price">From €14.99</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="about">
+    <h2>Why Choose BOTLAB?</h2>
+
+    <p class="about">
+      BOTLAB offers fast, secure and professional Discord bots designed to improve your community.
+      Every bot is easy to configure, reliable and supported by our team. Open a ticket in our Discord server
+      and choose the perfect bot for your project.
+    </p>
+
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">⚡</div>
+        <h3>Fast Setup</h3>
+        <p>Ready to use in minutes.</p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">🛡️</div>
+        <h3>Secure Systems</h3>
+        <p>Reliable and protected bots.</p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">🎨</div>
+        <h3>Customizable</h3>
+        <p>Adapt every bot to your server.</p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">🎫</div>
+        <h3>Dedicated Support</h3>
+        <p>Support available through tickets.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2>Ready to Upgrade Your Discord Server?</h2>
+    <p>Join BOTLAB, open a ticket and choose the perfect bot for your community.</p>
+    <a class="btn" href="https://discord.gg/TN36R4YefY" target="_blank">Open a Ticket</a>
+  </section>
+
+  <footer>
+    BOTLAB © 2026 - Discord Bots Made Simple
+  </footer>
+
+</body>
+</html>
